@@ -42,8 +42,5 @@
   "dependencies": {
     "lodash.isfunction": "^3.0.7",
     "lodash.set": "^4.0.0"
-  },
-  "peerDependencies": {
-    "redux-storage": "^3.0.0"
   }
 }
