@@ -1,0 +1,49 @@
+{
+  "name": "redux-storage-decorator-filter",
+  "version": "1.0.0",
+  "description": "Filter decorator for redux-storage",
+  "main": "build/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "test": "make lint test build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelcontento/redux-storage-decorator-filter.git"
+  },
+  "homepage": "https://github.com/michaelcontento/redux-storage-decorator-filter",
+  "keywords": [
+    "redux",
+    "redux-storage",
+    "redux-storage-decorator"
+  ],
+  "author": "Michael Contento <michaelcontento@gmail.com>",
+  "files": [
+    "build/",
+    "src",
+    "!**/__tests__/**"
+  ],
+  "eslintConfig": {
+    "extends": "michaelcontento"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-michaelcontento": "^1.3.0",
+    "eslint": "^1.10.3",
+    "eslint-config-michaelcontento": "^1.1.1",
+    "eslint-plugin-mocha-only": "0.0.3",
+    "immutable": "^3.7.6",
+    "mocca": "^0.3.0",
+    "release-it": "^2.3.1"
+  },
+  "dependencies": {
+    "lodash.isfunction": "^3.0.7",
+    "lodash.set": "^4.0.0"
+  },
+  "peerDependencies": {
+    "redux-storage": "^3.0.0"
+  }
+}

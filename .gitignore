@@ -1,0 +1,9 @@
+# build artefacts
+/build/
+/engines/
+
+# npm
+/node_modules/
+/npm-debug.log
+/redux-storage-*.tgz
+
