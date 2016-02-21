@@ -1,6 +1,6 @@
 # [redux-storage-decorator-filter][]
 
-[![build](https://travis-ci.org/michaelcontento/redux-storage-decorator-filter.svg)](https://travis-ci.org/michaelcontento/redux-storage-decorator-filter)
+[![build](https://travis-ci.org/michaelcontento/redux-storage-decorator-filter.svg?branch=master)](https://travis-ci.org/michaelcontento/redux-storage-decorator-filter)
 [![dependencies](https://david-dm.org/michaelcontento/redux-storage-decorator-filter.svg)](https://david-dm.org/michaelcontento/redux-storage-decorator-filter)
 [![devDependencies](https://david-dm.org/michaelcontento/redux-storage-decorator-filter/dev-status.svg)](https://david-dm.org/michaelcontento/redux-storage-decorator-filter#info=devDependencies)
 
