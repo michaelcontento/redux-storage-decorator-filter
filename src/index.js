@@ -1,4 +1,5 @@
 import set from 'lodash.set';
+import unset from 'lodash.unset';
 import isFunction from 'lodash.isfunction';
 
 export default (engine, whitelist = [], blacklist = []) => {
