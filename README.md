@@ -18,16 +18,19 @@ state tree.
 
 ## Usage
 
-Simply wrap your engine in this decorator and whitelist all keys that should
-be passed through.
+Simply wrap your engine in this decorator, whitelist all keys that should
+be passed through and blacklist the keys that shouldn't.
 
 ```js
 import filter from 'redux-storage-decorator-filter'
 
 engine = filter(engine, [
-    'simple-key',
+    'whitelisted-key',
     ['nested', 'key'],
     ['another', 'very', 'nested', 'key']
+], [
+    'backlisted-key',
+    ['nested', 'blacklisted-key']
 ]);
 ```
 
