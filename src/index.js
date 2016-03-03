@@ -3,11 +3,18 @@ import unset from 'lodash.unset';
 import isFunction from 'lodash.isfunction';
 
 export default (engine, whitelist = [], blacklist = []) => {
+    whitelist = whitelist || []; // eslint-disable-line no-param-reassign
+
     return {
         ...engine,
 
         save(state) {
-            const saveState = {};
+            let saveState = {};
+
+            // Copy the whole state if we're about to blacklist only
+            if (whitelist.length === 0 && blacklist.length > 0) {
+                saveState = { ...state };
+            }
 
             whitelist.forEach((key) => {
                 let value = state;

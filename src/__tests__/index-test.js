@@ -155,4 +155,22 @@ describe('decorator', () => {
 
         save.should.have.been.calledWith({ a: {} });
     });
+
+    it('should support blacklist only', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, [], ['b']);
+
+        engine.save({ a: 1, b: 2 });
+
+        save.should.have.been.calledWith({ a: 1 });
+    });
+
+    it('should support blacklist only - explicit null whitelist', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, null, ['b']);
+
+        engine.save({ a: 1, b: 2 });
+
+        save.should.have.been.calledWith({ a: 1 });
+    });
 });
