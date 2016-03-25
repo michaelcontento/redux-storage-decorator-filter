@@ -1,6 +1,8 @@
+import get from 'lodash.get';
+import isFunction from 'lodash.isfunction';
+import isObject from 'lodash.isobject';
 import set from 'lodash.set';
 import unset from 'lodash.unset';
-import isFunction from 'lodash.isfunction';
 
 export default (engine, whitelist = [], blacklist = []) => {
     whitelist = whitelist || []; // eslint-disable-line no-param-reassign
@@ -50,13 +52,24 @@ export default (engine, whitelist = [], blacklist = []) => {
                     key = [key]; // eslint-disable-line no-param-reassign
                 }
 
+                // Support immutable structures
                 const value = state[key[0]];
-
                 if (value && isFunction(value.deleteIn)) {
                     saveState[key[0]] = value.deleteIn(key.slice(1));
-                } else {
-                    unset(saveState, key);
+                    return;
                 }
+
+                // If we're a nested path ...
+                if (key.length > 1) {
+                    // ... and inside a object ...
+                    const myKey = key.slice(0, -1);
+                    const subValue = get(saveState, myKey);
+                    if (isObject(subValue)) {
+                        // ... clone it, as we don't want to change the state!
+                        set(saveState, myKey, { ...subValue });
+                    }
+                }
+                unset(saveState, key);
             });
 
             return engine.save(saveState);

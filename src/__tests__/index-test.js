@@ -111,6 +111,16 @@ describe('decorator', () => {
         save.should.have.been.calledWith({ key: 'value', some: {} });
     });
 
+    it('should NOT change the passed state with a blacklist (issue #13)', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, null, [['some', 'a']]);
+
+        const state = { some: { a: 1, b: 2 } };
+        engine.save(state);
+
+        state.should.deep.equal({ some: { a: 1, b: 2 } });
+    });
+
     it('should ignore not existing but blacklisted keys', () => {
         const save = sinon.spy();
         const engine = filter({ save }, ['key'], ['ignored']);
