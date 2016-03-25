@@ -50,7 +50,13 @@ export default (engine, whitelist = [], blacklist = []) => {
                     key = [key]; // eslint-disable-line no-param-reassign
                 }
 
-                unset(saveState, key);
+                const value = state[key[0]];
+
+                if (value && isFunction(value.deleteIn)) {
+                    saveState[key[0]] = value.deleteIn(key.slice(1));
+                } else {
+                    unset(saveState, key);
+                }
             });
 
             return engine.save(saveState);

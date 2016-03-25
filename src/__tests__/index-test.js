@@ -57,7 +57,7 @@ describe('decorator', () => {
         save.should.have.been.calledWith({});
     });
 
-    it('should support immutable', () => {
+    it('should support whitelisting an immutable', () => {
         const save = sinon.spy();
         const engine = filter({ save }, [['some', 'key']]);
 
@@ -129,13 +129,13 @@ describe('decorator', () => {
         save.should.have.been.calledWith({ key: 'value' });
     });
 
-    it('should support immutable', () => {
+    it('should support blacklisting an immutable', () => {
         const save = sinon.spy();
         const engine = filter({ save }, [['some', 'key']], [['some', 'key']]);
 
         engine.save({ some: map({ key: 42 }) });
 
-        save.should.have.been.calledWith({ some: {} });
+        save.should.have.been.calledWith({ some: map({}) });
     });
 
     it('should handle null values (PR #64)', () => {
