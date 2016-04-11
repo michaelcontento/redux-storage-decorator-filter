@@ -145,7 +145,7 @@ describe('decorator', () => {
 
         engine.save({ some: map({ key: 42 }) });
 
-        save.should.have.been.calledWith({ some: map({}) });
+        save.should.have.been.calledWith({ some: {} });
     });
 
     it('should handle null values (PR #64)', () => {
@@ -182,5 +182,23 @@ describe('decorator', () => {
         engine.save({ a: 1, b: 2 });
 
         save.should.have.been.calledWith({ a: 1 });
+    });
+
+    it('should support multiple blacklist with partially similar path', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, null, [['a', '1'], ['a', '2']]);
+
+        engine.save({ a: { '1': 1, '2': 2, '3': 3 } });
+
+        save.should.have.been.calledWith({ a: { '3': 3 } });
+    });
+
+    it('should support multiple blacklist with partially similar path - immutable', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, ['a'], [['a', '1'], ['a', '2']]);
+
+        engine.save({ a: map({ '1': 1, '2': 2 }) });
+
+        save.should.have.been.calledWith({ a: map({ }) });
     });
 });
