@@ -1,4 +1,5 @@
 import get from 'lodash.get';
+import reduce from 'lodash.reduce';
 import isFunction from 'lodash.isfunction';
 import isObject from 'lodash.isobject';
 import set from 'lodash.set';
@@ -19,31 +20,28 @@ export default (engine, whitelist = [], blacklist = []) => {
             }
 
             whitelist.forEach((key) => {
-                let value = state;
-
                 // Support strings for one-level paths
                 if (typeof key === 'string') {
                     key = [key]; // eslint-disable-line no-param-reassign
                 }
 
-                key.forEach((keyPart) => {
-                    // Support immutable structures
-                    if (isFunction(value.has) && isFunction(value.get)) {
-                        if (!value.has(keyPart)) {
-                            // No value stored
-                            return;
+                const value = reduce(key, (result, keyPart) => {
+                    if (result) {
+                        // Support immutable structures
+                        if (isFunction(result.has) && isFunction(result.get)) {
+                            return result.get(keyPart);
                         }
 
-                        value = value.get(keyPart);
-                    } else if (value.hasOwnProperty(keyPart)) {
-                        value = value[keyPart];
-                    } else {
-                        // No value stored
-                        return;
+                        if (result.hasOwnProperty(keyPart)) {
+                            return result[keyPart];
+                        }
                     }
+                }, state);
 
+                if (value !== undefined) {
+                    // done to support null values
                     set(saveState, key, value);
-                });
+                }
             });
 
             blacklist.forEach((key) => {

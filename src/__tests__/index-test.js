@@ -50,9 +50,9 @@ describe('decorator', () => {
 
     it('should ignore not existing but whitelisted key paths', () => {
         const save = sinon.spy();
-        const engine = filter({ save }, [['some', 'key']]);
+        const engine = filter({ save }, [['a', 'nonExistingProp']]);
 
-        engine.save({ ignored: true });
+        engine.save({ a: { existingProp: true } });
 
         save.should.have.been.calledWith({});
     });
