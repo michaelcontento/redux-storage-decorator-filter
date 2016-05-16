@@ -52,8 +52,11 @@ export default (engine, whitelist = [], blacklist = []) => {
 
                 // Support immutable structures
                 const value = state[key[0]];
-                if (value && isFunction(value.deleteIn)) {
-                    saveState[key[0]] = value.deleteIn(key.slice(1));
+                const blacklistedState = saveState[key[0]] || value;
+
+                if (blacklistedState && isFunction(blacklistedState.deleteIn)) {
+                    // Handle multiple blacklist path with same key
+                    saveState[key[0]] = blacklistedState.deleteIn(key.slice(1));
                     return;
                 }
 
