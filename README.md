@@ -29,7 +29,7 @@ engine = filter(engine, [
     ['nested', 'key'],
     ['another', 'very', 'nested', 'key']
 ], [
-    'backlisted-key',
+    'blacklisted-key',
     ['nested', 'blacklisted-key']
 ]);
 ```
