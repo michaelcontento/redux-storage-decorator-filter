@@ -5,7 +5,7 @@ import isObject from 'lodash.isobject';
 import set from 'lodash.set';
 import unset from 'lodash.unset';
 
-export default (engine, whitelist = [], blacklist = []) => {
+export default (engine, whitelist = null, blacklist = null) => {
     whitelist = whitelist || []; // eslint-disable-line no-param-reassign
 
     return {
@@ -15,9 +15,11 @@ export default (engine, whitelist = [], blacklist = []) => {
             let saveState = {};
 
             // Copy the whole state if we're about to blacklist only
-            if (whitelist.length === 0 && blacklist.length > 0) {
+            if (whitelist.length === 0 && blacklist !== null) {
                 saveState = { ...state };
             }
+
+            blacklist = blacklist || []; // eslint-disable-line no-param-reassign
 
             whitelist.forEach((key) => {
                 // Support strings for one-level paths
