@@ -201,4 +201,13 @@ describe('decorator', () => {
 
         save.should.have.been.calledWith({ a: map({ }) });
     });
+
+    it('should support empty blacklist', () => {
+        const save = sinon.spy();
+        const engine = filter({ save }, null, []);
+
+        engine.save({ a: { '1': 1, '2': 2 } });
+
+        save.should.have.been.calledWith({ a: { '1': 1, '2': 2 } });
+    });
 });
