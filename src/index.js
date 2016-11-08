@@ -5,7 +5,7 @@ import isObject from 'lodash.isobject';
 import set from 'lodash.set';
 import unset from 'lodash.unset';
 
-export default (engine, whitelist = [], blacklist = []) => {
+export default (engine, whitelist = null, blacklist = null) => {
     whitelist = whitelist || []; // eslint-disable-line no-param-reassign
 
     return {
