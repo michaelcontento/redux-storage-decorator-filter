@@ -7,19 +7,14 @@
 [![license](https://img.shields.io/npm/l/redux-storage-decorator-filter.svg?style=flat-square)](https://www.npmjs.com/package/redux-storage-decorator-filter)
 [![npm version](https://img.shields.io/npm/v/redux-storage-decorator-filter.svg?style=flat-square)](https://www.npmjs.com/package/redux-storage-decorator-filter)
 [![npm downloads](https://img.shields.io/npm/dm/redux-storage-decorator-filter.svg?style=flat-square)](https://www.npmjs.com/package/redux-storage-decorator-filter)
-[![Code Climate](https://codeclimate.com/github/michaelcontento/redux-storage-decorator-filter/badges/gpa.svg)](https://codeclimate.com/github/michaelcontento/redux-storage-decorator-filter)
 
 Filter decorator for [redux-storage][] to only store a subset of the whole
 state tree.
 
-# Deprecated - No longer maintained
+# Moved to the react-stack organisation
 
-My focus has left the node / react ecosystem and this module is no
-longer maintained. Maybe [redux-persist](https://github.com/rt2zz/redux-persist) 
-is a good replacement for you? Or if you want to step in and become
-the new owner - just ping me :smile:
-
-Thank you for your patience and using this module in the first place!
+My focus has left the node / react ecosystem and this module has got a new home
+over at [react-stack](https://github.com/react-stack/redux-storage-decorator-filter)!
 
 ## Installation
 
