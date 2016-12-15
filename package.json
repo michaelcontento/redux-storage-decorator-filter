@@ -32,7 +32,7 @@
     "babel-polyfill": "^6.3.14",
     "babel-preset-modern-node": "^2.1.0",
     "babel-preset-stage-2": "^6.5.0",
-    "eslint": "^1.10.3",
+    "eslint": "^3.3.1",
     "eslint-config-michaelcontento": "^1.1.1",
     "eslint-plugin-mocha-only": "0.0.3",
     "immutable": "^3.7.6",
